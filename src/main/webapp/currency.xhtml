@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>HW4 - Currency Converter</title>
+    </h:head>
+    <h:body>
+        <h1>Currency Converter</h1>
+
+        <h3>Result from conversion</h3>
+        <p>
+            <h:outputLabel for="currencyName" rendered="#{currencyManager.currentCurrency != null}"  value="Exchanged From: "/>
+            <h:outputText id="currencyName" value="#{currencyManager.currentCurrency.currencyName}"/>
+        </p>
+        <p>
+            <h:outputLabel for="currExchangeRate" rendered="#{currencyManager.currentCurrency != null}"  value="ExchangeRate: "/>
+            <h:outputText id="currExchangeRate" value="#{currencyManager.currentCurrency.exchangeRate}"/>
+
+            <h:outputText rendered="#{currencyManager.currentCurrency == null}"  value="No conversion made yet"/>
+        </p>
+        <p>
+            <h:outputLabel for="currExchangedValue" rendered="#{currencyManager.currentCurrency != null}"  value="Result: "/>
+            <h:outputText id="currExchangedValue" value="#{currencyManager.currentCurrency.exchangedAmount}"/>
+        </p>
+        <hr/>
+
+        <h:form>
+            <h3>Exchange</h3>
+            <p>
+                <h:outputLabel for="searchedCurrency" value="Exchange from currency: "/>
+                <h:inputText id="searchedCurrency" value="#{currencyManager.searchedCurrency}"/>
+            </p>
+            <p>
+                <h:outputLabel for="exchangeToCurrency" value="Exchange to currency: "/>
+                <h:inputText id="exchangeToCurrency" value="#{currencyManager.exchangeToCurrency}"/>
+            </p>
+            <p>
+                <h:outputLabel for="exchangeAmount" value="Exchange Amount: "/>
+                <h:inputText id="exchangeAmount" value="#{currencyManager.exchangeAmount}"/>
+            </p>
+            <p>
+                <h:commandButton value="Exchange" action="#{currencyManager.convertCurrency}"/>
+            </p>
+            <hr/>
+
+            <h3>Add a new currency</h3>
+            <p>
+                <h:outputLabel for="newCurrencyName" value="Name of new currency: "/>
+                <h:inputText id="newCurrencyName" value="#{currencyManager.newCurrencyName}"/>
+            </p>
+            <p>
+                <h:outputLabel for="newExchangeRate" value="Exchange Rate: "/>
+                <h:inputText id="newExchangeRate" value="#{currencyManager.newExchangeRate}"/>
+            </p>
+            <p>
+                <h:commandButton value="Add Currency" action="#{currencyManager.addNewCurrency}"/>
+            </p>
+            <p>
+                <h:outputLabel for="currencyName" rendered="#{currencyManager.currencyAdded != null}"  value="Added currency: "/>
+                <h:outputText id="currencyName" value="#{currencyManager.currencyAdded.currencyName}"/>
+            </p>
+             <p>
+                <h:outputLabel for="currExchangedValue" rendered="#{currencyManager.currencyAdded != null}"  value="Exchange rate: "/>
+                <h:outputText id="currExchangedValue" value="#{currencyManager.currencyAdded.exchangeRate}"/>
+            </p>
+            <hr/>
+        </h:form>
+
+    </h:body>
+</html>
+

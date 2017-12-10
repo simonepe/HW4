@@ -1,0 +1,1 @@
+INSERT INTO "Currency" VALUES ( 10, 'sek', 10.5, 0);
